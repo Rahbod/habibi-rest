@@ -8,7 +8,7 @@
 module.exports = {
   register: async function (req, res) {
     let user = req.param('user');
-    let userAddress = req.param('userAddress');
+    // let userAddress = req.param('userAddress');
 
     // set defaults
     user.status = 'active';
@@ -27,24 +27,24 @@ module.exports = {
       return res.send(result);
     }
 
-    userAddress.user = model.id;
-
-    let addressModel;
-    try {
-      addressModel = await UserAddresses.create(userAddress).fetch();
-    } catch (err) {
-      let result = {
-        status: false,
-        code: err.code,
-        message: err.details
-      };
-      return res.send(result);
-    }
+    // userAddress.user = model.id;
+    //
+    // let addressModel;
+    // try {
+    //   addressModel = await UserAddresses.create(userAddress).fetch();
+    // } catch (err) {
+    //   let result = {
+    //     status: false,
+    //     code: err.code,
+    //     message: err.details
+    //   };
+    //   return res.send(result);
+    // }
 
     let result = {
       status: true,
       user_id: model.id,
-      address_id: addressModel.id
+      // address_id: addressModel.id
     };
 
     return res.send(result);
