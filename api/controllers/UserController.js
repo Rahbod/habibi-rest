@@ -7,6 +7,8 @@
 
 module.exports = {
   register: async function (req, res) {
+    console.log(sails.config.sms.lineNumber);
+    return;
     let user = req.param('user');
     // let userAddress = req.param('userAddress');
 
