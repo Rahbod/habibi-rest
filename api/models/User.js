@@ -7,6 +7,7 @@
 const bcrypt = require('bcrypt-nodejs');
 module.exports = {
   tableName: "ym_users",
+  schema: true,
   attributes: {
     username: {
       type: 'string',
@@ -20,12 +21,12 @@ module.exports = {
     email: {
       type: 'string',
       isEmail: true,
-      required: true,
-      unique: true
+      unique: true,
+      allowNull: true
     },
     role: {
       model: 'UserRoles',
-      columnName:'role_id'
+      columnName: 'role_id'
     },
     create_date: {
       type: 'string',
@@ -40,7 +41,7 @@ module.exports = {
     change_password_request_count: {
       type: 'number',
       allowNull: true,
-      defaultsTo:0
+      defaultsTo: 0
     },
     auth_mode: {
       type: 'string',
@@ -53,7 +54,12 @@ module.exports = {
     },
   },
   customToJSON: function () {
-    return _.omit(this, ['password'])
+    return _.omit(this, [
+      'password',
+      'status',
+      'auth_mode',
+      'change_password_request_count',
+      'verification_token'])
   },
   beforeCreate: function (user, cb) {
     bcrypt.genSalt(12, function (err, salt) {
@@ -62,6 +68,11 @@ module.exports = {
         user.password = hash;
         return cb();
       });
+    });
+  },
+  afterCreate: async function (user, cb) {
+    await UserDetails.create({
+      user: user.id
     });
   }
 };

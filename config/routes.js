@@ -45,5 +45,6 @@ module.exports.routes = {
   '/logout': 'AuthController.logout',
   // 'GET /register': { view: 'register' },
   'POST /register': 'UserController.register',
+  'POST /verification': 'UserController.verification',
 
 };

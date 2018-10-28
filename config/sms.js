@@ -3,7 +3,7 @@
  */
 
 module.exports.sms = {
-  apiKey: "25f920a84ec20b698752523",
+  apiKey: "c9c9c6f7d975936a33fc6f7",
   securityKey: "!@#Rahbod1395",
   lineNumber: "30004747473705",
 };
