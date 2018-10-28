@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const jwt = require('jsonwebtoken');
+
 async function sendVerification(number, code) {
   // let r = await sms.token(sails.config.sms.apiKey,sails.config.sms.securityKey);
   let sms = require('sails-sms-ir');
@@ -126,10 +128,12 @@ module.exports = {
 
     let result;
     if (model.status === 'active') {
+      const token = jwt.sign(model, 'your_jwt_secret');
+
       result = {
         status: true,
-        user_id: model.id,
-        code: model.verification_token,
+        user: model,
+        token: token,
       };
     } else {
       result = {

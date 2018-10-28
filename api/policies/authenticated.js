@@ -1,4 +1,5 @@
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
 module.exports = function (req, res, done) {
   passport.authenticate('bearer', {session: false}, function(err, user, info) {

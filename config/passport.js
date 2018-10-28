@@ -31,7 +31,7 @@ passport.use(new LocalStrategy({
   });
 }));
 
-module.exports.express = {
+module.exports.passport = {
   customMiddleware: function(app)
   {
     app.use(passport.initialize());

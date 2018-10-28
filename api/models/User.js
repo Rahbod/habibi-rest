@@ -51,15 +51,13 @@ module.exports = {
     state_id: {
       type: 'number',
       allowNull: true
-    },
+    }
   },
   customToJSON: function () {
     return _.omit(this, [
       'password',
-      'status',
       'auth_mode',
-      'change_password_request_count',
-      'verification_token'])
+      'change_password_request_count'])
   },
   beforeCreate: function (user, cb) {
     bcrypt.genSalt(12, function (err, salt) {

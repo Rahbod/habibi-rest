@@ -46,5 +46,6 @@ module.exports.routes = {
   // 'GET /register': { view: 'register' },
   'POST /register': 'UserController.register',
   'POST /verification': 'UserController.verification',
+  'GET /hello': 'UserController.hello',
 
 };
