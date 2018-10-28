@@ -142,6 +142,10 @@ module.exports = {
     return res.send(result);
   },
 
+  hello: function (req, res) {
+    res.send("Hello");
+  },
+
   addAddress: async function(req, res){
     // let userAddress = req.param('userAddress');
     // userAddress.user = model.id;

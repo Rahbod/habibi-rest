@@ -1,10 +1,9 @@
-/**
- * Created by Yusef on 10/22/2018.
- */
+
 
 const passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
   bcrypt = require('bcrypt-nodejs');
+
 passport.serializeUser(function(user, cb) {
   cb(null, user.id);
 });
@@ -31,3 +30,11 @@ passport.use(new LocalStrategy({
     });
   });
 }));
+
+module.exports.express = {
+  customMiddleware: function(app)
+  {
+    app.use(passport.initialize());
+    app.use(passport.session());
+  }
+};
