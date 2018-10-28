@@ -128,12 +128,9 @@ module.exports = {
 
     let result;
     if (model.status === 'active') {
-      const token = jwt.sign(model, 'your_jwt_secret');
-
       result = {
         status: true,
-        user: model,
-        token: token,
+        user: model.id,
       };
     } else {
       result = {
