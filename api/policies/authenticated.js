@@ -6,6 +6,6 @@ module.exports = function (req, res, done) {
     if (err) return done(err);
     if (user) return done();
 
-    return res.send(403, {message: "You are not permitted to perform this action."});
+    return res.status(403).send({message: "You are not permitted to perform this action."});
   })(req, res);
 };
